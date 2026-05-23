@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Services Grid (Professional UI)</title>
+    <style>
+      :root {
+        --bg: #f6f8fc;
+        --card-bg: #ffffff;
+        --text: #0f172a;
+        --muted: #475569;
+        --muted-2: #64748b;
+        --border: rgba(15, 23, 42, 0.08);
+        --shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
+        --shadow-hover: 0 18px 44px rgba(15, 23, 42, 0.14);
+        --accent: #e11d2e;
+        --accent-soft: rgba(225, 29, 46, 0.12);
+        --radius: 18px;
+        --radius-sm: 14px;
+        --max: 1100px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: radial-gradient(900px 450px at 18% 0%, #ffffff 0%, var(--bg) 55%, var(--bg) 100%);
+        color: var(--text);
+        font: 500 16px/1.55 Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans",
+          "Apple Color Emoji", "Segoe UI Emoji";
+      }
+
+      .wrap {
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: clamp(20px, 3vw, 36px);
+      }
+
+      .section-title {
+        margin: 4px 0 16px;
+        font-size: clamp(20px, 2.2vw, 28px);
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+      }
+
+      .section-subtitle {
+        margin: 0 0 22px;
+        color: var(--muted);
+        max-width: 68ch;
+      }
+
+      .grid {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 18px;
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+      }
+
+      @media (min-width: 680px) {
+        .grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 20px;
+        }
+      }
+
+      @media (min-width: 980px) {
+        .grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 22px;
+        }
+      }
+
+      .card {
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.98));
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+        position: relative;
+        min-height: 154px;
+        display: flex;
+      }
+
+      /* subtle top glow */
+      .card::before {
+        content: "";
+        position: absolute;
+        inset: 0 0 auto 0;
+        height: 84px;
+        background: radial-gradient(320px 90px at 18% 0%, var(--accent-soft), transparent 60%);
+        pointer-events: none;
+      }
+
+      .card a {
+        color: inherit;
+        text-decoration: none;
+        display: grid;
+        grid-template-columns: 84px 1fr;
+        gap: 14px;
+        width: 100%;
+        padding: 18px 18px 18px 16px;
+        border-radius: var(--radius);
+        outline: none;
+        position: relative;
+      }
+
+      .card a:focus-visible {
+        box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.18);
+      }
+
+      .icon {
+        width: 64px;
+        height: 64px;
+        border-radius: 999px;
+        background: rgba(15, 23, 42, 0.03);
+        border: 1px solid rgba(15, 23, 42, 0.06);
+        display: grid;
+        place-items: center;
+        margin-top: 4px;
+      }
+
+      .icon svg {
+        width: 28px;
+        height: 28px;
+        stroke: var(--text);
+        opacity: 0.9;
+      }
+
+      .meta {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .label {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+        font-weight: 800;
+        color: var(--accent);
+        margin-top: 4px;
+      }
+
+      .label::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        background: var(--accent);
+        box-shadow: 0 0 0 6px var(--accent-soft);
+      }
+
+      .desc {
+        margin: 0;
+        color: var(--muted-2);
+        font-weight: 500;
+      }
+
+      .card:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-hover);
+        border-color: rgba(225, 29, 46, 0.18);
+      }
+
+      .card:hover .icon {
+        background: rgba(225, 29, 46, 0.06);
+        border-color: rgba(225, 29, 46, 0.18);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .card {
+          transition: none;
+          transform: none;
+        }
+      }
+
+      /* smooth transitions */
+      .card,
+      .icon {
+        transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease, background 180ms ease;
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="wrap">
+      <h1 class="section-title">Our Services</h1>
+      <p class="section-subtitle">
+        A clean, modern services grid with consistent card height, subtle depth, and responsive layout. Replace the
+        labels/descriptions/icons to match your content.
+      </p>
+
+      <ul class="grid" aria-label="Service highlights">
+        <li class="card">
+          <a href="#" aria-label="24 HRS Ambulance - Learn more">
+            <div class="icon" aria-hidden="true">
+              <!-- ambulance -->
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 16V7a2 2 0 0 1 2-2h7v11" />
+                <path d="M14 16h1.5a2 2 0 0 0 1.8-1.1l1.4-2.8A3 3 0 0 1 22 11v5h-2" />
+                <path d="M18 16h-4" />
+                <path d="M6.5 19a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z" />
+                <path d="M18.5 19a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z" />
+                <path d="M7 10h3" />
+                <path d="M8.5 8.5v3" />
+              </svg>
+            </div>
+            <div class="meta">
+              <div class="label">24 HRS Ambulance</div>
+              <p class="desc">
+                Rapid response and expert medical care around the clock with our 24-hour ambulance service.
+              </p>
+            </div>
+          </a>
+        </li>
+
+        <li class="card">
+          <a href="#" aria-label="Pharmacy - Learn more">
+            <div class="icon" aria-hidden="true">
+              <!-- pharmacy -->
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 20V9a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v11" />
+                <path d="M9 20V12h6v8" />
+                <path d="M10.5 5h3" />
+                <path d="M12 3.5v3" />
+              </svg>
+            </div>
+            <div class="meta">
+              <div class="label">Pharmacy</div>
+              <p class="desc">
+                A comprehensive range of medications, ensuring accessible, quality pharmaceuticals for your well-being.
+              </p>
+            </div>
+          </a>
+        </li>
+
+        <li class="card">
+          <a href="#" aria-label="Operation Theatre - Learn more">
+            <div class="icon" aria-hidden="true">
+              <!-- operation theatre -->
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 18v-6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v6" />
+                <path d="M7 10V7a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v3" />
+                <path d="M8 18h8" />
+                <path d="M12 14v4" />
+              </svg>
+            </div>
+            <div class="meta">
+              <div class="label">Operation Theatre</div>
+              <p class="desc">
+                Elevate your surgical experience in our state-of-the-art theatre where technology meets skilled
+                professionals.
+              </p>
+            </div>
+          </a>
+        </li>
+
+        <li class="card">
+          <a href="#" aria-label="Supreme at Home - Learn more">
+            <div class="icon" aria-hidden="true">
+              <!-- home -->
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 11.5 12 4l9 7.5" />
+                <path d="M6.5 10.5V20h11V10.5" />
+              </svg>
+            </div>
+            <div class="meta">
+              <div class="label">Supreme at Home</div>
+              <p class="desc">
+                Healthcare at your doorstep—seamless, stress-free access to essential services with personalized support.
+              </p>
+            </div>
+          </a>
+        </li>
+
+        <li class="card">
+          <a href="#" aria-label="X-Ray Digital - Learn more">
+            <div class="icon" aria-hidden="true">
+              <!-- x-ray -->
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 7h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2Z" />
+                <path d="M9 11l6 6" />
+                <path d="M15 11l-6 6" />
+                <path d="M12 6V3" />
+              </svg>
+            </div>
+            <div class="meta">
+              <div class="label">X-Ray Digital</div>
+              <p class="desc">
+                Advanced digital X-ray services delivering high-resolution imaging for accurate and prompt assessments.
+              </p>
+            </div>
+          </a>
+        </li>
+
+        <li class="card">
+          <a href="#" aria-label="Special Nurses - Learn more">
+            <div class="icon" aria-hidden="true">
+              <!-- nurse -->
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4Z" />
+                <path d="M4.5 20a7.5 7.5 0 0 1 15 0" />
+                <path d="M10.5 6h3" />
+                <path d="M12 4.5v3" />
+              </svg>
+            </div>
+            <div class="meta">
+              <div class="label">Special Nurses</div>
+              <p class="desc">
+                Compassionate care from specialized nurses dedicated to your unique healthcare needs and comfort.
+              </p>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </main>
+  </body>
+</html>
+
